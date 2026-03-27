@@ -70,11 +70,11 @@ class SpellChecker:
                 self._view._lvOut.controls.append(ft.Text("La frase non deve contenere numeri!", color="red"))
                 self._view.update()
                 return
-        if lingua=="":
+        if lingua==None: #se non selezionato, il dropdown ha valore None
             self._view._lvOut.controls.append(ft.Text("Devi scegliere una lingua!", color="red"))
             self._view.update()
             return
-        if modalità=="":
+        if modalità==None:
             self._view._lvOut.controls.append(ft.Text("Devi scegliere una modalità!", color="red"))
             self._view.update()
             return
