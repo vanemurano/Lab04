@@ -26,10 +26,35 @@ class View(object):
                    alignment=ft.MainAxisAlignment.START)
         )
 
-        # Add your stuff here
+        #scelta lingua -> prima riga
+        self._dropDownLanguage=ft.Dropdown(  # il controllo Dropdown apre un menù a tendina
+            label="Seleziona una lingua",
+            options=[
+                ft.dropdown.Option("italian"),  # dropdown.Option sono le opzioni selezionabili dal menù
+                ft.dropdown.Option("english"),
+                ft.dropdown.Option("spanish")
+            ], expand=True
+        )
+        row1=ft.Row(controls=[self._dropDownLanguage]) #si estende per tutto lo spazio disponibile sulla riga
+        self.page.add(row1)
 
-        # self.page.add([])
+        #scelta ricerca
+        self._dropDownModality=ft.Dropdown(  # il controllo Dropdown apre un menù a tendina
+                label="Seleziona una modalità di ricerca",
+                options=[
+                    ft.dropdown.Option("Default"),  # dropdown.Option sono le opzioni selezionabili dal menù
+                    ft.dropdown.Option("Linear"),
+                    ft.dropdown.Option("Dichotomic")
+                ]
+            )
+        self._txtInFrase=ft.TextField(label="Inserisci la tua frase", expand=True)
+        self._btnAvviaCorrezione=ft.ElevatedButton(text="Avvia correzione ortografica",
+                                                   on_click=self.__controller.handleSpellCheck,
+                                                   width=300)
+        row2 = ft.Row(controls=[self._dropDownModality, self._txtInFrase, self._btnAvviaCorrezione]) #allinea a sinistra
 
+        self._lvOut=ft.ListView(expand=True)
+        self.page.add(row2, self._lvOut)
         self.page.update()
 
     def update(self):
@@ -47,7 +72,10 @@ class View(object):
         self.__theme_switch.label = (
             "Light theme" if self.page.theme_mode == ft.ThemeMode.LIGHT else "Dark theme"
         )
-        # self.__txt_container.bgcolor = (
-        #     ft.colors.GREY_900 if self.page.theme_mode == ft.ThemeMode.DARK else ft.colors.GREY_300
-        # )
+        #self.__txt_container.bgcolor = (
+         #   ft.colors.GREY_900 if self.page.theme_mode == ft.ThemeMode.DARK else ft.colors.GREY_300)
+        """if self.page.theme_mode == ft.ThemeMode.DARK:
+            self.__controller.output_frase.color=ft.colors.WHITE
+            self.__controller.output_tempo.color=ft.colors.WHITE #le scritte nere diventano bianche quando switcho tema"""
+        #quando cambio tema, le scritte nere diventano automaticamente bianche e viceversa
         self.page.update()

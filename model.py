@@ -71,7 +71,7 @@ class MultiDictionary:
 
             parole.append(richW)
 
-        return parole
+        return parole #ritorna una lista di richwords
 
     def searchWordDichotomic(self, words, language):
         # words is a list of strings

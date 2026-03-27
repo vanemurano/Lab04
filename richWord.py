@@ -18,4 +18,4 @@ class RichWord:
         self._corretta = boolValue
 
     def __str__(self):
-        return self._parola
+        return self._parola #ritorna la stringa che rappresenta la parola
